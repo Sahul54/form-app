@@ -23,7 +23,9 @@ function App() {
     lastName: "",
     email: "",
     comments: "",
-    isVisible: false
+    isVisiable: false,
+    mode: "",
+    favCar: ""
 
   });
 
@@ -41,8 +43,16 @@ function App() {
     });
   }
 
+  function submitHandler(event) {
+    event.preventDefault();
+    // print data
+    console.log("Finally printing the fiil data....");
+    console.log(formData);
+  }
+
   return (
     <div className="App">
+      <form onSubmit={submitHandler}>
       <input
         onChange={changeHandler}
         type="text"
@@ -80,9 +90,54 @@ function App() {
       onChange={changeHandler}
       name="isVisiable"
       id="isVisiable"
-      checked={formData.isVisible}
+      checked={formData.isVisiable}
       ></input>
       <label htmlFor="isVisiable">AM, I Visiable</label>
+      <br/><br/>
+
+      
+      <fieldset>
+        <legend>Mode:</legend>
+        <input
+      type="radio"
+      onChange={changeHandler}
+      name="mode"
+      checked={formData.mode === "online-mode"}
+      value="online-mode"
+      id="online-mode"
+      ></input>
+      <label htmlFor="online-mode">Online-mode</label>
+     
+        <input
+      type="radio"
+      onChange={changeHandler}
+      name="mode"
+      checked={formData.mode === "Offline-mode"}
+      value="Offnline-mode"
+      id="Offnline-mode"
+      ></input>
+      <label htmlFor="Offnline-mode">Offline-mode</label>
+      </fieldset>
+      <br/><br/>
+
+      <label htmlFor="favCar"> Your favourite Car </label>
+      <select
+      onChange={changeHandler}
+      name="favCar"
+      id="favCar"
+      value={formData.favCar}
+      >
+        <option>Audi</option>
+        <option>BMW</option>
+        <option>Farari</option>
+        <option>Tesla</option>
+      </select>
+     
+      {/* <input type="submit" value="submit"></input>      */}
+       <br/><br/>
+       <button >Submit</button> 
+      </form>
+
     </div>
   );
 }
